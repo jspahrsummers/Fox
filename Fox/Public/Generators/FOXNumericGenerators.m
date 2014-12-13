@@ -4,6 +4,7 @@
 #import "FOXArrayGenerators.h"
 #import "FOXRoseTree.h"
 #import "FOXChooseGenerator.h"
+#import "FOXDeterministicRandom.h"
 
 FOX_EXPORT id<FOXGenerator> _FOXNaturalInteger(void) {
     return FOXMap(FOXInteger(), ^id(NSNumber *number) {
@@ -149,4 +150,10 @@ FOX_EXPORT id<FOXGenerator> FOXDecimalNumber(void) {
     });
 
     return FOXWithName(@"DecimalNumber", gen);
+}
+
+FOX_EXPORT id<FOXGenerator> FOXSeed(void) {
+    return FOXBind(FOXPositiveInteger(), ^id<FOXGenerator>(NSNumber *value) {
+        return FOXReturn([[FOXDeterministicRandom alloc] initWithSeed:[value unsignedIntegerValue]]);
+    });
 }

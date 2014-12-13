@@ -87,3 +87,5 @@ FOX_EXPORT id<FOXGenerator> FOXDouble(void);
  *  @returns a generator that produces NSDecimalNumbers.
  */
 FOX_EXPORT id<FOXGenerator> FOXDecimalNumber(void);
+
+FOX_EXPORT id<FOXGenerator> FOXSeed(void);
